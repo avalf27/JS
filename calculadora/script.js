@@ -1,106 +1,196 @@
-document.addEventListener("DOMContentLoaded", function () {
+var operandoa;
+var operandob;
+var operacion;
 
-    var tela = document.getElementById("tela");
+function init(){
+    //variables
+    var barra = document.getElementById('barra');
+    var eliminar = document.getElementById('eliminar');
+    var suma = document.getElementById('suma');
+    var resta = document.getElementById('resta');
+    var multiplicacion = document.getElementById('multiplicacion');
+    var division = document.getElementById('dividir');
+    var igual = document.getElementById('igual');
+    var uno = document.getElementById('uno');
+    var dos = document.getElementById('dos');
+    var tres = document.getElementById('tres');
+    var cuatro = document.getElementById('cuatro');
+    var cinco = document.getElementById('cinco');
+    var seis = document.getElementById('seis');
+    var siete = document.getElementById('siete');
+    var ocho = document.getElementById('ocho');
+    var nueve = document.getElementById('nueve');
+    var cero = document.getElementById('cero');
+    var coma = document.getElementById('coma');
+    var porcentaje = document.getElementById('porcentaje');
 
-    //Array de elementos que receber uma listener
-    var listenerBtn = [];
-
-    //teclas adicionais do teclado
-    var btnResultado = document.getElementById("resultado");
-    var btnLimparTela = document.getElementById("limparTela");
-    var btnApagarAnterior = document.getElementById("apagarAnterior");
-
-    listenerBtn.push(document.getElementById("ponto"));
-
-    //teclas dos operadores
-    listenerBtn.push(document.getElementById("soma"));
-    listenerBtn.push(document.getElementById("subtracao"));
-    listenerBtn.push(document.getElementById("divisao"));
-    listenerBtn.push(document.getElementById("multiplicacao"));
-
-    //teclas númericas da calculadora
-    listenerBtn.push(document.getElementById("num0"));
-    listenerBtn.push(document.getElementById("num1"));
-    listenerBtn.push(document.getElementById("num2"));
-    listenerBtn.push(document.getElementById("num3"));
-    listenerBtn.push(document.getElementById("num4"));
-    listenerBtn.push(document.getElementById("num5"));
-    listenerBtn.push(document.getElementById("num6"));
-    listenerBtn.push(document.getElementById("num7"));
-    listenerBtn.push(document.getElementById("num8"));
-    listenerBtn.push(document.getElementById("num9"));
-
-    //Adicionando evento de click
-    for (var i = 0; i < listenerBtn.length; i++) {
-        listenerBtn[i].addEventListener("click", passarValorTela);
+    //eventos
+    uno.onclick = function(e){
+        barra.textContent = barra.textContent  + "1";
     }
 
-    btnResultado.onclick = function () {
-        verificarResulatado();
+    dos.onclick = function(e){
+        barra.textContent = barra.textContent  + "2";
     }
 
-    function verificarResulatado() {
-        try {
-            var aux = tela.value.substring(tela.value.length - 1, tela.value.length);
-            if (verificarOperador(aux)) {
-                apagarAnterior();
-            }
-
-            var valorCalculado = eval(tela.value); //calcular o conteúdo da string
-            if (valorCalculado || valorCalculado == "0") {
-                tela.value = valorCalculado;
-            } else {
-                throw "erro";
-            }
-        } catch (e) {
-            console.error(e);
-        }
+    tres.onclick = function(e){
+        barra.textContent = barra.textContent  + "3";
     }
 
-    function passarValorTela() {
-
-        if (verificarOperador(this.value)) {
-            var aux = tela.value.substring(tela.value.length - 1, tela.value.length);
-            //subtituir o valor do operador pelo atual
-            if (verificarOperador(aux)) {
-                apagarAnterior();
-            }
-        }
-        if (this.value) {
-            tela.value += this.value;
-        }
-
+    cuatro.onclick = function(e){
+        barra.textContent = barra.textContent  + "4";
     }
 
-    btnApagarAnterior.onclick = function () {
-        apagarAnterior();
+    cinco.onclick = function(e){
+        barra.textContent = barra.textContent  + "5";
     }
 
-    function apagarAnterior() {
-        if (tela.value.length > 0) {
-            var aux = tela.value.substring(0, tela.value.length - 1);
-            tela.value = aux;
-        }
+    seis.onclick = function(e){
+        barra.textContent = barra.textContent  + "6";
     }
 
-    btnLimparTela.onclick = function () {
-        tela.value = "";
+    siete.onclick = function(e){
+        barra.textContent = barra.textContent  + "7";
     }
 
-    function verificarOperador(valor) {
-        switch (valor) {
-            case "+":
-                return true;
-            case "-":
-                return true;
-            case "*":
-                return true;
-            case "/":
-                return true;
+    ocho.onclick = function(e){
+        barra.textContent = barra.textContent  + "8";
+    }
 
-            default:
+    nueve.onclick = function(e){
+        barra.textContent = barra.textContent  + "9";
+    }
+
+    cero.onclick = function(e){
+        barra.textContent = barra.textContent  + "0";
+    }
+
+    coma.onclick = function(e){
+        barra.textContent = barra.textContent  + ".";
+    }
+
+    porcentaje.onclick = function(e){
+        barra.textContent = barra.textContent  + "%";
+    }
+
+    eliminar.onclick = function(e){
+        resetear();
+    }
+
+    suma.onclick = function(e){
+        operandoa = barra.textContent;
+        operacion = "+";
+        limpiar();
+    }
+
+    resta.onclick = function(e){
+        operandoa = barra.textContent;
+        operacion = "-";
+        limpiar();
+    }
+
+    multiplicacion.onclick = function(e){
+        operandoa = barra.textContent;
+        operacion = "*";
+        limpiar();
+    }
+
+    division.onclick = function(e){
+        operandoa = barra.textContent;
+        operacion = "/";
+        limpiar();
+    }
+
+    igual.onclick = function(e){
+        operandob = barra.textContent;
+        resolver();
+    }
+
+    porcentaje.onclick = function(e){
+        operandoa = barra.textContent;
+        operacion="%";
+        limpiar();
+    }
+
+}
+
+function limpiar(){
+    barra.textContent = "";
+}
+
+function resetear(){
+    barra.textContent = "";
+    operandoa=0;
+    operandob=0;
+    operacion="";
+}
+
+function resolver(){
+    
+    var operacionValidar = barra.textContent;
+
+    if(expresionValida(operacionValidar)){
+    var res= 0;
+    switch(operacion){
+        case "+":
+            res = parseFloat(operandoa) + parseFloat(operandob);
+            break;
+        case "-":
+            res = parseFloat(operandoa) - parseFloat(operandob);
+            break;
+        case "*":
+            res = parseFloat(operandoa) * parseFloat(operandob);
+            break;
+        case "/":
+            res = parseFloat(operandoa) / parseFloat(operandob);
+            break;
+        case "%": 
+            res = (parseFloat(operandoa)*parseFloat(operandob))/100;
+            break;
+    }
+    resetear();
+    barra.textContent = res;
+    } else {
+        alert("Expresion no valida.Porfavor , ingrese una expresion matematica valida. ");
+    }
+}
+
+//Funcion que aplica el patron que se va a utilizar para validar la operacion.
+function expresionValida(operacionValidar){
+const patron = /^[0-9+\-*()/. ]+$/;
+
+if(!patron.test(operacionValidar)){
+    return false;
+}
+
+if (!tieneParentesis(operacionValidar)){
+    return false;
+}
+
+    return tieneParentesis(operacionValidar);
+}
+
+
+function tieneParentesis(operacionValidar){
+    const pila = [];
+
+    for(let caracter of operacionValidar){
+        if(caracter === '('){
+            pila.push(caracter);
+        }else if (caracter === ')'){
+            if(pila.length === 0){
                 return false;
+            }
+            pila.pop();
         }
     }
+    return pila.length === 0;
+}
+
+
+//Codigo para saber cual ha sido la skin seleccionada
+document.getElementById('skin-seleccionada').addEventListener('change',function(){
+    var skinSeleccionada = this.value;
+    document.querySelector('.calculadora').className = 'calculadora' + skinSeleccionada;
 
 });

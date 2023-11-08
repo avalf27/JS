@@ -1,73 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Calculadora</title>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<link href="style.css" type="text/css" rel="stylesheet" />
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-
-	<nav class="navbar navbar-expand navbar-dark bg-dark">
-		<div class="nav navbar-nav">
-			<a class="nav-item nav-link active" href="#">Calculadora JavaScript <span
-					class="sr-only">(current)</span></a>
-		</div>
-	</nav>
-	<div class="container" style="margin-top: 40px;">
-		<div class="row">
-			<div class="col-md-12">
-
-				<div id="calculadora">
-
-					<table>
-						<tr>
-							<td colspan="4">
-								<input type="text" id="tela" maxlength="30" readonly="readonly" />
-							</td>
-						</tr>
-						<tr>
-							<td><input type="button" id="apagarAnterior" value="<-" /></td>
-							<td><input type="button" id="limparTela" value="C" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num7" value="7" /></td>
-							<td><input type="button" id="num8" value="8" /></td>
-							<td><input type="button" id="num9" value="9" /></td>
-							<td><input type="button" id="divisao" value="/" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num4" value="4" /></td>
-							<td><input type="button" id="num5" value="5" /></td>
-							<td><input type="button" id="num6" value="6" /></td>
-							<td><input type="button" id="multiplicacao" value="*" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num1" value="1" /></td>
-							<td><input type="button" id="num2" value="2" /></td>
-							<td><input type="button" id="num3" value="3" /></td>
-							<td><input type="button" id="subtracao" value="-" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num0" value="0" /></td>
-							<td><input type="button" id="ponto" value="." /></td>
-							<td><input type="button" id="resultado" value="=" /></td>
-							<td><input type="button" id="soma" value="+" /></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
+<body onload="init();">
+	<div class="skin">
+		<select id="skin-seleccionada">
+			<option class="Skin1">Skin 1</option>
+			<option class="Skin2">Skin 2</option>
+			<option class="Skin3">Skin 3</option>
+		</select>
 	</div>
-
-	<script type="text/javascript" src="script.js"></script>
+	<div class="container">
+		<table class="calculadora">
+			<tr>
+				<td colspan="4"><span id="barra"></span></td>
+			</tr>
+			<tr>
+				<td><button id="siete">7</button></td>
+				<td><button id="ocho">8</button></td>
+				<td><button id="nueve">9</button></td>
+				<td><button id="dividir">/</button></td>
+			</tr>
+			<tr>
+				<td><button id="cuatro">4</button></td>
+				<td><button id="cinco">5</button></td>
+				<td><button id="seis">6</button></td>
+				<td><button id="multiplicacion">*</button></td>
+			</tr>
+			<tr>
+				<td><button id="uno">1</button></td>
+				<td><button id="dos">2</button></td>
+				<td><button id="tres">3</button></td>
+				<td><button id="resta">-</button></td>
+			</tr>
+			<tr>
+				<td><button id="cero">0</button></td>
+				<td><button id="eliminar">C</button></td>
+				<td><button id="porcentaje">%</button></td>
+				<td><button id="suma">+</button></td>
+			</tr>
+			<tr>
+				<td><button id="coma">.</button></td>
+				<td><button id="+/-">+/-</button></td>
+				<td colrow="2"><button id="igual">=</button></td>
+			</tr>
+		</table>
+		<script src="script.js" type="text/javascript"></script>
+	</div>
 </body>
-
 </html>
