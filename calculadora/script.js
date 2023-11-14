@@ -127,6 +127,7 @@ function resetear(){
 
 function resolver(){
     
+    var barra = document.getElementById('barra');
     var operacionValidar = barra.textContent;
 
     if(expresionValida(operacionValidar)){
@@ -155,9 +156,18 @@ function resolver(){
     }
 }
 
+function cambiarSigno(numero){
+    return numero * (-1);
+}
+
+const botonSigno = document.getElementById('mas_menos');
+botonSigno.addEventListener("click",() =>{
+    const numeroActual = document.getElementById('barra').value;
+    document.getElementById('barra').value = cambiarSigno(numeroActual);
+})
 //Funcion que aplica el patron que se va a utilizar para validar la operacion.
 function expresionValida(operacionValidar){
-const patron = /^[0-9+\-*()/. ]+$/;
+const patron = /^[0-9+\-*/. %]+$/;
 
 if(!patron.test(operacionValidar)){
     return false;
@@ -185,12 +195,30 @@ function tieneParentesis(operacionValidar){
         }
     }
     return pila.length === 0;
+
 }
 
 
-//Codigo para saber cual ha sido la skin seleccionada
-document.getElementById('skin-seleccionada').addEventListener('change',function(){
-    var skinSeleccionada = this.value;
-    document.querySelector('.calculadora').className = 'calculadora' + skinSeleccionada;
+ document.getElementById('skin-seleccionada').addEventListener('change',function(){
+        var opcionSeleccionada = this.value;
 
-});
+        var styles = document.getElementById('paginas-estilo');
+
+        if(opcionSeleccionada === 'Skin1'){
+            styles.href = './css/estilo1.css';
+        } else if (opcionSeleccionada === 'Skin2') {
+            styles.href = './css/estilo2.css';
+        } else if (opcionSeleccionada === 'Skin3'){
+            styles.href = './css/estilo3.css';
+        }
+ });
+
+
+
+ //Regla 6: const patron = /^[0-9+\-*=.%]+(?=^(\+|-)$)/;
+
+ //Regla 7: const patron = /^[0-9]+(\.[0-9]{1})?$/;
+
+ //Regla 8: const patron = /^[0-9+\-*=.%]+(?=(/0|0\.0))/;
+
+ //Regla 10: const patron = /^[0-9+\-*=.%]+(?=(=|%|$))/;

@@ -1,0 +1,42 @@
+body{
+    background-image: linear-gradient(to right, red, black);
+  }
+  
+.calculadora {
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+    padding: 20px;
+    width: 335px;
+    height: 500px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #1c1c1c;
+  }
+  
+  .calculadora td button {
+    display: block;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: black;
+    color: red;
+    border: 1px solid red;
+  }
+  
+  #barra {
+    display: block;
+    text-align: right;
+    font-size: 30px;
+    margin-bottom: 10px;
+    width: 290px;
+    height: 75px;
+    line-height: 100px;
+    background-color: white;
+    border: 1px solid white;
+    color: black;
+    text-align: right;
+    border-radius: 5px;
+  }
+  
