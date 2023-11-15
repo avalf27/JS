@@ -23,7 +23,7 @@ function init(){
     var cero = document.getElementById('cero');
     var coma = document.getElementById('coma');
     var porcentaje = document.getElementById('porcentaje');
-
+    var mas_menos = document.getElementById('mas_menos');
     //eventos
     uno.onclick = function(e){
         barra.textContent = barra.textContent  + "1";
@@ -112,6 +112,13 @@ function init(){
         limpiar();
     }
 
+    mas_menos.onclick = function(e){
+        operandoa = barra.textContent;
+        barra.textContent = cambiarSigno(operandoa);
+    }
+
+
+
 }
 
 function limpiar(){
@@ -152,6 +159,7 @@ function resolver(){
     resetear();
     barra.textContent = res;
     } else {
+        barra.textContent = "NaN";
         alert("Expresion no valida.Porfavor , ingrese una expresion matematica valida. ");
     }
 }
@@ -160,9 +168,8 @@ function cambiarSigno(numero){
     return numero * (-1);
 }
 
-const botonSigno = document.getElementById('mas_menos');
-botonSigno.addEventListener("click",() =>{
-    const numeroActual = document.getElementById('barra').value;
+mas_menos.addEventListener("click",() =>{
+    var numeroActual = document.getElementById('barra').value;
     document.getElementById('barra').value = cambiarSigno(numeroActual);
 })
 //Funcion que aplica el patron que se va a utilizar para validar la operacion.
@@ -174,11 +181,12 @@ if(!patron.test(operacionValidar)){
 }
 
 if (!tieneParentesis(operacionValidar)){
-    return false;
+     return false;
 }
 
-    return tieneParentesis(operacionValidar);
+     return tieneParentesis(operacionValidar);
 }
+
 
 
 function tieneParentesis(operacionValidar){
@@ -199,6 +207,7 @@ function tieneParentesis(operacionValidar){
 }
 
 
+
  document.getElementById('skin-seleccionada').addEventListener('change',function(){
         var opcionSeleccionada = this.value;
 
@@ -213,12 +222,3 @@ function tieneParentesis(operacionValidar){
         }
  });
 
-
-
- //Regla 6: const patron = /^[0-9+\-*=.%]+(?=^(\+|-)$)/;
-
- //Regla 7: const patron = /^[0-9]+(\.[0-9]{1})?$/;
-
- //Regla 8: const patron = /^[0-9+\-*=.%]+(?=(/0|0\.0))/;
-
- //Regla 10: const patron = /^[0-9+\-*=.%]+(?=(=|%|$))/;
